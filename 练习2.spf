@@ -65,8 +65,6 @@
 			<string>{{0, 0}, {1279, 320}}</string>
 			<key>isToolbarVisible</key>
 			<true/>
-			<key>table</key>
-			<string>tea_stu_rel</string>
 			<key>view</key>
 			<string>SP_VIEW_CUSTOMQUERY</string>
 			<key>windowVerticalDividerPosition</key>
@@ -81,57 +79,59 @@
 	<array/>
 	<key>queryHistory</key>
 	<array>
-		<string>alter table tea_stu_rel add constraint fk_sid foreign key(sid) references student(sid)</string>
-		<string>alter table tea_stu_rel add constraint fk_tid foreign key(tid) references teacher(tid)</string>
-		<string>create table tea_stu_rel(
-		tid int,
-		sid int
-)</string>
-		<string>create table tea_stu_rel(
-		tid int,
-		sid int,
-)</string>
-		<string>create table teacher(
-		tid int primary key,
-		tname varchar(20)
-)</string>
-		<string>create table student(
-		sid int primary key,
-		sname varchar(50)
-)</string>
-		<string>drop table stu,student</string>
-		<string>drop table sco,score</string>
-		<string>drop table student</string>
-		<string>drop table *</string>
-		<string>alter table sco add constraint fk_sid foreign key(sid) references stu(sid)</string>
-		<string>create table sco(
-		sid int,
-		score double
-)</string>
-		<string>create table sco(
-		sid int,
-		score double
-)
-alter table sco add constraint fk_sid foreign (sid) references stu(sid)</string>
-		<string>drop table sco</string>
-		<string>create table stu(
-		sid int primary key,-- 必须为主键
-		name varchar(50)
+		<string>CREATE TABLE student(
+	stuid VARCHAR(10)PRIMARY KEY,
+	stuname VARCHAR(50)
 );
-create table sco(
-		sid int,
-		score double,
-		constraint fk_stu_sco_sid foreign key(sid) references stu(sid)
+-- 分数表
+-- 外键约束：foreign key ,谁需要参照，谁加foreign key
+CREATE TABLE score(
+	stuid VARCHAR(10),
+	score INT,
+	courseid INT,
+	CONSTRAINT fk_stu_sco  FOREIGN KEY(stuid) REFERENCES student(stuid)
 )</string>
-		<string>SELECT * FROM student s LEFT JOIN score c ON s.stuid=c.stuid</string>
+		<string>drop table tea_stu_rel,teacher,student</string>
+		<string>drop table teacher</string>
+		<string>drop table student</string>
+		<string>CREATE TABLE student(
+	stuid VARCHAR(10)PRIMARY KEY,
+	stuname VARCHAR(50)
+)</string>
+		<string>DROP TABLE score</string>
+		<string>CREATE TABLE score(
+	stuid VARCHAR(10),
+	score INT,
+	courseid INT,
+	CONSTRAINT fk_stu_sco  FOREIGN KEY(stuid) REFERENCES student(stuid)
+)</string>
 		<string>SELECT * FROM score</string>
-		<string>SELECT * FROM student</string>
-		<string>SELECT * FROM student s,score c WHERE s.stuid=c.stuid</string>
-		<string>INSERT INTO score VALUES('1001',98,1);
-INSERT INTO score VALUES('1002',95,1);
-INSERT INTO score VALUES('1002',67,2);
-INSERT INTO score VALUES('1003',83,2);
-INSERT INTO score VALUES('1003',57,3)</string>
+		<string>INSERT INTO score VALUES('1001',98,1)</string>
+		<string>INSERT INTO student VALUES('1001','张三峰');
+INSERT INTO student VALUES('1002','张无忌');
+INSERT INTO student VALUES('1003','王尼玛');
+INSERT INTO student VALUES('1004','王老五')</string>
+		<string>select * from A,B where A.`name`=B.`name`</string>
+		<string>select * from A,B</string>
+		<string>select * from B</string>
+		<string>select * from A</string>
+		<string>select * from A
+union all
+select * from B</string>
+		<string>select * from A
+union -- 联合
+select * from B</string>
+		<string>insert into B values('a',10),('b',20),('d',40)</string>
+		<string>insert into A values('a',10),('b',20),('c',30)</string>
+		<string>create table A(
+	name varchar(10),
+	score int
+);
+create table B(
+	name varchar(10),
+	score int
+)</string>
+		<string>alter table qqDetail add constraint fk_qq_qqDetail_qqid foreign key(qqid) references qq(qqid)</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>
