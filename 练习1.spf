@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>mydb1</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>local</string>
+			<key>port</key>
+			<integer>3306</integer>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
+			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
+			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
+			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {694, 450}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>-- DML
+-- 插入操作
+-- 向emp表中添加数据(字段名，顺序要和values一致)
+INSERT INTO emp(id,name,gender,birthday,salary,entry_date,resume)
+VALUES (1,'tom','m','2015-09-24',10000,'2015-09-25','good boy');
+INSERT INTO emp (id,name,gender,birthday,salary,entry_date,resume)
+VALUES (2,'jerry','f','2015-09-24',10000,'2015-09-25','good girl');
+INSERT INTO emp (id,name,gender,birthday,salary,entry_date,resume)
+VALUES (4,'菜10','f','2015-09-24',12000,'2015-09-25','good girl');
+-- 全都给值的话，就不用字段名了
+INSERT INTO emp VALUES (1,'舟杰杰','m','2015-09-24',10000,'2015-09-25','good boy');
+
+-- 修改操作
+-- 将所有员工薪水修改为5000
+UPDATE emp SET salary=5000;
+-- 将所有姓名为tom的员工薪水修改为3000, where类似于if
+UPDATE emp SET salary=3000 WHERE name='tom';
+-- 修改名字为jerry的员工薪水设置为4000，job修改为ccc
+UPDATE emp SET salary=4000,gender='f' WHERE name='jerry';
+-- 将tom的薪水在原有的基础上增加3000
+UPDATE emp set salary=salary+3000 WHERE name='tom';
+
+-- 删除操作
+-- 删除名字叫tom的人员
+DELETE FROM emp WHERE name='tom';
+-- 删除所有表里的数据(逐个删除,会保留日志，可以恢复)
+DELETE FROM emp;
+-- 使用TRUNCATE删除表中记录(执行步骤：drop原有的表，再按照原来的格式再create一次,无日志，无法恢复)
+TRUNCATE TABLE emp;
+
+-- DQL 数据查询语言
+-- 查询操作
+-- 查询表中的所有数据
+SELECT * from emp;
+-- 查看name字段数据
+SELECT name from emp;
+-- 查看name salary字段数据
+SELECT name,salary from emp;
+-- 查询练习1---------------
+CREATE TABLE stu (
+	sid	CHAR(6),
+	sname		VARCHAR(50),
+	age		INT,
+	gender	VARCHAR(50)
+);
+INSERT INTO stu VALUES('S_1001', 'liuYi', 35, 'male');
+INSERT INTO stu VALUES('S_1002', 'chenEr', 15, 'female');
+INSERT INTO stu VALUES('S_1003', 'zhangSan', 95, 'male');
+INSERT INTO stu VALUES('S_1004', 'liSi', 65, 'female');
+INSERT INTO stu VALUES('S_1005', 'wangWu', 55, 'male');
+INSERT INTO stu VALUES('S_1006', 'zhaoLiu', 75, 'female');
+INSERT INTO stu VALUES('S_1007', 'sunQi', 25, 'male');
+INSERT INTO stu VALUES('S_1008', 'zhouBa', 45, 'female');
+INSERT INTO stu VALUES('S_1009', 'wuJiu', 85, 'male');
+INSERT INTO stu VALUES('S_1010', 'zhengShi', 5, 'female');
+INSERT INTO stu VALUES('S_1011', 'xxx', NULL, NULL);
+
+SELECT * from stu;
+
+-- 工作人员表
+CREATE TABLE emp(
+	empno		INT,
+	ename		VARCHAR(50),
+	job		VARCHAR(50),
+	mgr		INT,
+	hiredate	DATE,
+	sal		DECIMAL(7,2),
+	comm		decimal(7,2),
+	deptno		INT
+);
+INSERT INTO emp values(7369,'SMITH','CLERK',7902,'1980-12-17',800,NULL,20);
+INSERT INTO emp values(7499,'ALLEN','SALESMAN',7698,'1981-02-20',1600,300,30);
+INSERT INTO emp values(7521,'WARD','SALESMAN',7698,'1981-02-22',1250,500,30);
+INSERT INTO emp values(7566,'JONES','MANAGER',7839,'1981-04-02',2975,NULL,20);
+INSERT INTO emp values(7654,'MARTIN','SALESMAN',7698,'1981-09-28',1250,1400,30);
+INSERT INTO emp values(7698,'BLAKE','MANAGER',7839,'1981-05-01',2850,NULL,30);
+INSERT INTO emp values(7782,'CLARK','MANAGER',7839,'1981-06-09',2450,NULL,10);
+INSERT INTO emp values(7788,'SCOTT','ANALYST',7566,'1987-04-19',3000,NULL,20);
+INSERT INTO emp values(7839,'KING','PRESIDENT',NULL,'1981-11-17',5000,NULL,10);
+INSERT INTO emp values(7844,'TURNER','SALESMAN',7698,'1981-09-08',1500,0,30);
+INSERT INTO emp values(7876,'ADAMS','CLERK',7788,'1987-05-23',1100,NULL,20);
+INSERT INTO emp values(7900,'JAMES','CLERK',7698,'1981-12-03',950,NULL,30);
+INSERT INTO emp values(7902,'FORD','ANALYST',7566,'1981-12-03',3000,NULL,20);
+INSERT INTO emp values(7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
+
+-- 部门表
+CREATE TABLE dept(
+	deptno		INT,
+	dname		varchar(14),
+	loc		varchar(13)
+);
+INSERT INTO dept values(10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO dept values(20, 'RESEARCH', 'DALLAS');
+INSERT INTO dept values(30, 'SALES', 'CHICAGO');
+INSERT INTO dept values(40, 'OPERATIONS', 'BOSTON');
+
+SELECT * from emp;
+SELECT * from dept;
+
+
+
+-- DQL练习
+-- 查询语句书写顺序：select – from- where- group by- having- order by-limit
+--	查询语句执行顺序：from - where -group by - having - select - order by-limit	
+-- 1.2 查询指定列
+select sid,sname,age from stu;
+-- 条件查询
+/*
+条件查 询就是在查询时给出WHERE子句，在WHERE子句中可以使用如下运算符及关键字：
+=、!=、&lt;&gt;、&lt;、&lt;=、&gt;、&gt;=;     &lt;&gt;和!= 效果一样，不等于
+BETWEEN..AND..;在两参数之内(包括两参数)
+IN(set); 在set范围之内，括号内填入多个值
+IS NULL; IS NOT NULL 判断是否为空
+AND;
+OR;
+NOT;  
+*/
+select * from stu;
+-- 2.2 查询性别为女，且年龄大于等于50的记录
+select * from stu where gender='female' and age&gt;=50;
+-- 2.3　查询学号为S_1001或者姓名为liSi的记录
+select * from stu where sid='S_1001' or sname='liSi';
+-- 2.4　查询学号为S_1001，S_1002，S_1003的记录
+select * from stu where sid in ('S_1001','S_1002','S_1003');
+select * from stu where sid='S_1001' or sid='S_1002' or sid='S_1003';
+-- 2.5　查询学号不是S_1001，S_1002，S_1003的记录
+select * from stu where sid not in ('S_1001','S_1002','S_1003');
+-- 2.6　查询年龄为null的记录
+select * from stu where age is null;
+-- 2.7　查询年龄在20到40之间的学生记录
+select * from stu where age between 20 and 40;
+-- 2.8　查询性别非男的学生记录
+select * from stu where gender!='male';
+-- 2.9　查询姓名不为null的学生记录
+select * from stu where sname is not null;
+
+
+
+-- 模糊查询
+/* 
+当想查询姓名中包含a字母的学生时就需要使用模糊查询了。模糊查询需要使用关键字LIKE。
+通配符: 
+_ 任意一个字符
+%：任意0~n个字符
+
+例如：
+'%张%'  '张_' 
+*/
+-- 3.1　查询姓名由5个字母构成的学生记录
+select * from stu where sname like '_____';
+-- 3.2　查询姓名由5个字母构成，并且第5个字母为“i”的学生记录
+select * from stu where sname like '____i';
+-- 3.3　查询姓名以“z”开头的学生记录
+select * from stu where sname like 'z%';
+-- 3.4　查询姓名中第2个字母为“i”的学生记录
+select * from stu where sname like '_i%';
+-- 3.5　查询姓名中包含“a”字母的学生记录
+select * from stu where sname like '%a%';
+
+
+
+-- 字段控制查询
+SELECT * from emp;
+SELECT * from dept;
+-- 4.1　去除重复记录
+/* 
+去除重复记录（两行或两行以上记录中系列的上的数据都相同）
+例如emp表中sal字段就存在相同的记录。当只查询emp表的sal字段时，那么会出现重复记录，那么想去除重复记录，需要使用DISTINCT | distinct：
+SELECT DISTINCT sal FROM emp; 
+*/
+select distinct deptno from emp;
+-- 要两个字段都一样才会去除
+select distinct deptno,mgr from emp;
+-- 4.2　查看雇员的月薪与佣金之和
+-- 任何数值与null相加会变成null
+select sal+comm from emp;
+-- 去除空字段 IFNULL(不为空取的参数, 为空取的参数),例如下方为空则取0，不为空则取原值
+select sal+IFNULL(comm, 0) from emp;
+-- 给列起别名 as
+select sal+IFNULL(comm, 0) as total from emp;
+-- 空格默认是as
+select sal 工资, job 职位 from emp;
+
+
+-- 排序 order by 列名 asc(默认升序) | desc(降序)
+-- 5.1　查询所有学生记录，按年龄升序排序
+select * from stu order by age asc;
+select * from stu order by age;
+-- 5.2　查询所有学生记录，按年龄降序排序
+select * from stu order by age desc;
+-- 5.3　查询所有雇员，按月薪降序排序，如果月薪相同时，按编号升序排序.优先级从前往后
+select * from emp order by sal desc,empno asc;
+
+
+-- 聚合函数  sum avg max min count
+/*
+聚合函数是用来做纵向运算的函数：
+COUNT()：统计指定列不为NULL的记录行数；
+MAX()：计算指定列的最大值，如果指定列是字符串类型，那么使用字符串排序运算；
+MIN()：计算指定列的最小值，如果指定列是字符串类型，那么使用字符串排序运算；
+SUM()：计算指定列的数值和，如果指定列类型不是数值类型，那么计算结果为0；
+AVG()：计算指定列的平均值，如果指定列类型不是数值类型，那么计算结果为0；
+*/
+select COUNT(age) from stu;
+select MAX(sal) from emp;
+select MIN(sal) from emp;
+select SUM(sal) from emp;
+select AVG(sal) from emp;
+
+-- count
+-- 查询emp表中有佣金的人数：
+select COUNT(comm) from emp;
+-- 查询emp表中月薪大于2500的人数：
+select count(*) from emp where sal&gt;2500;
+-- 统计月薪与佣金之和大于2500元的人数：
+select count(*) from emp where sal+ifnull(comm,0)&gt;2500;
+-- 查询有佣金的人数,有领导的人数：
+select count(comm),count(mgr) from emp;
+-- 查询有佣金的人数且有领导的人数：
+select count(*) from emp where comm is not null and mgr is not null;
+select count(*) from emp where comm is not null and comm&lt;&gt;0 and mgr is not null;
+-- sum 和 avg
+-- 查询所有雇员月薪和：
+select sum(sal) from emp;
+-- 查询所有雇员月薪和，以及所有雇员佣金和：
+select sum(sal),sum(comm) from emp;
+-- 查询所有雇员月薪+佣金和：
+select sum(sal)+sum(comm) from emp;
+-- 统计所有员工平均工资：
+select avg(sal) from emp;
+-- max 和 min
+-- 查询最高工资和最低工资：
+select max(sal),min(sal) from emp;
+select * from emp where sal=(select max(sal) from emp);
+select * from emp where sal=(select min(sal) from emp);
+
+-- 分组查询
+/*
+当需要分组查询时需要使用GROUP BY子句，例如查询每个部门的 工资和，这说明要使用部门来分组。
+注：凡和聚合函数同时出现的列名，一定要写在group by 之后 
+例如:
+select deptno,sum(sal) from emp group by deptno;
+*/
+select * from stu;
+-- 求男生个数和女生个数
+select count(*) from stu where gender is not null group by gender;
+-- 由于分了两个组，所以下面语句只出来两个数据
+select * from stu where gender is not null group by gender;
+-- 查询各部门的人数
+select deptno,count(*) from emp group by deptno;
+-- 查询每个部门的部门编号和每个部门的工资和：
+select deptno,sum(sal) from emp group by deptno;
+-- 查询每个部门的部门编号以及每个部门的人数：
+select deptno,count(*) from emp group by deptno;
+-- 查询每个部门的部门编号以及每个部门工资大于1500的人数：
+select deptno,count(*) from emp where sal&gt;1500 group by deptno;
+
+-- having 子句
+/*
+注：having与where的区别:
+1.having是在分组后对数据进行过滤.where是在分组前对数据进行过滤
+2.having后面可以使用聚合函数(统计函数).where后面不可以使用聚合函数。
+WHERE是对分组前记录的条件，如果某行记录没有满足WHERE子句的条件，那么这行记录不会参加分组；而HAVING是对分组后数据的约束。
+*/
+-- 在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。
+-- 查询工资总和大于9000的部门编号以及工资和：
+select deptno,sum(sal) from emp group by deptno having sum(sal)&gt;9000;
+-- 升序
+select deptno,sum(sal) from emp group by deptno having sum(sal)&gt;9000 order by sum(sal);
+-- 查询部门里工资大于1500的所有员工的工资总和，且总和大于6000的部门编号以及工资和：
+select deptno,sum(sal) from emp where sal&gt;1500 group by deptno having sum(sal)&gt;6000;
+
+
+-- limit 方言
+-- LIMIT用来限定查询结果的起始行，以及总行数。 分页技术
+-- 8.1　查询5行记录，起始行从0开始
+-- 第一个参数：从第几行查询，第二个参数查几个
+select * from emp limit 0,5;
+-- Java 分页查询思路
+select * from emp;
+INT currentPage = 1; -- 当前页
+INT pageSize = 3;-- 每页显示的条数
+select * from emp limit (currentPage-1)*pageSize,pageSize;
+
+
+
+
+
+</string>
+			<key>table</key>
+			<string>emp</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>157</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select * from emp limit (currentPage-1)*pageSize,pageSize</string>
+		<string>select * from emp</string>
+		<string>select * from emp limit 2,3</string>
+		<string>select * from emp limit 0,5</string>
+		<string>select deptno,sum(sal) from emp where sal&gt;1500 group by deptno having sum(sal)&gt;6000</string>
+		<string>select deptno,sum(sal) from emp where sal&gt;1500 group by deptno having sum(sal)&gt;8000</string>
+		<string>elect deptno,sum(sal) from emp where sal&gt;1500 group by deptno having sum(sal)&gt;6000</string>
+		<string>select deptno,sum(sal) from emp where sal&gt;1500 group by deptno</string>
+		<string>select deptno,sum(sal) from emp group by deptno having sum(sal)&gt;9000 order by sum(sal)</string>
+		<string>select deptno,sum(sal) from emp group by deptno having sum(sal)&gt;9000</string>
+		<string>select * from stu where age&gt;(select avg(age) from stu)</string>
+		<string>select * from stu having age&gt;(select avg(age) from stu)</string>
+		<string>select avg(age) from stu</string>
+		<string>select avg(age) from emp</string>
+		<string>select * from stu where age&gt;(select avg(age) from emp)</string>
+		<string>select * from stu having age&gt;avg(age)</string>
+		<string>select * from stu</string>
+		<string>select deptno,sum(sal) from emp group by deptno having sal&gt;9000</string>
+		<string>select deptno,sum(sal) from emp where sal&gt;9000 group by deptno</string>
+		<string>select deptno,sum(sal) from emp group by deptno</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.7.16</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
