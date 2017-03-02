@@ -30,3 +30,47 @@ select e1.ename name,e1.empno no,e2.ename mgrName,e2.empno mgrNo from emp e1,emp
 select e1.* from emp e1,(select deptno,max(sal) maxSal from emp group by deptno) e2
 where e1.sal=e2.maxSal and e1.deptno=e2.deptno;-- 从字表查出来的结果表，再设定条件
 
+
+-- MySQL函数
+-- 时间日期相关函数 --
+-- 叠加时间
+select addtime('15:51:00','1:1:1');
+-- 当前日期 current_date
+select current_date();
+-- 当前时间 current_time
+select current_time();
+-- 当前时间戳 current_timestamp
+select current_timestamp();
+-- 当前系统时间 now
+select now();
+-- 加日期 date_add(时间,interval 时间 类型)
+select date_add(now(),interval 4 day);
+
+-- 字符串相关函数 --
+-- 查看字符集
+select charset('tom');
+-- 拼接字符串
+select CONCAT('aaa', 'bbb','ccc');
+-- 查看是否含有字符串 
+select INSTR('daaa', 'd');
+-- 左边开始取2个字符
+select left('admin',2);
+-- 替换字符 将参数1的参数2替换成参数3
+select REPLACE('abcde','ab','ba');
+-- 查看字符串长度
+select LENGTH('aaabbb');
+-- 截取字符串，将参数1的参数2位置，截取参数3的长度
+select substring('abcd',2,2);
+
+-- 数学相关函数 --
+-- abs() 绝对值
+-- bin() 十进制转二进制
+-- ceiling() 向上取整
+-- floor() 向下取整
+-- format(number,decimal_places) 保留小数位数 会四舍五入
+select format(100.995,2);
+-- least() 范围里取最小值
+-- mod(number1,number2) number1取number2余
+select MOD(112,10);
+-- rand() 随机数 0~1
+select rand();
